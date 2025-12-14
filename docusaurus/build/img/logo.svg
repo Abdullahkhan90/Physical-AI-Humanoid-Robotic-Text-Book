@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Robot/Humanoid representation -->
+  <circle cx="50" cy="30" r="15" fill="#446B8A" /> <!-- Head -->
+  
+  <!-- Body -->
+  <rect x="40" y="45" width="20" height="30" fill="#5D8AA8" />
+  
+  <!-- Arms -->
+  <line x1="30" y1="50" x2="70" y2="50" stroke="#5D8AA8" stroke-width="5" stroke-linecap="round" />
+  
+  <!-- Legs -->
+  <line x1="45" y1="75" x2="45" y2="95" stroke="#3D6A94" stroke-width="5" stroke-linecap="round" />
+  <line x1="55" y1="75" x2="55" y2="95" stroke="#3D6A94" stroke-width="5" stroke-linecap="round" />
+  
+  <!-- Circuit pattern to represent AI -->
+  <path d="M20 15 H30 M30 15 L35 20 M35 20 H45 M45 20 L50 25 M50 25 H60" 
+        stroke="#FFCC00" stroke-width="2" fill="none" stroke-linecap="round" />
+        
+  <!-- Neural network dots -->
+  <circle cx="25" cy="70" r="2" fill="#FFCC00" />
+  <circle cx="30" cy="65" r="2" fill="#FFCC00" />
+  <circle cx="35" cy="70" r="2" fill="#FFCC00" />
+  <circle cx="30" cy="75" r="2" fill="#FFCC00" />
+</svg>

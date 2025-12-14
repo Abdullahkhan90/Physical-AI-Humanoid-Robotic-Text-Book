@@ -11,14 +11,14 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://ai-textbook-project.github.io/', // Updated to a more appropriate domain
+  url: 'https://abdullahkhan90.github.io', // Updated to match your GitHub username
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub Pages: https://<USERNAME>.github.io/<REPO>/
-  baseUrl: '/ai-textbook-physical-ai-humanoid/', // Updated to match project name
+  baseUrl: '/Physical-AI-Humanoid_Robotic-Text-Book/', // Updated to match your repository name
 
   // GitHub pages deployment config.
-  organizationName: 'AI-Textbook-Project', // Usually your GitHub org/user name.
-  projectName: 'ai-textbook-physical-ai-humanoid', // Usually your repo name.
+  organizationName: 'Abdullahkhan90', // Usually your GitHub org/user name.
+  projectName: 'Physical-AI-Humanoid_Robotic-Text-Book', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -28,7 +28,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ur'], // Including Urdu as per project requirements
+    locales: ['en'], // Temporarily disabling 'ur' due to translation file issues
   },
 
   presets: [
@@ -40,13 +40,13 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/',
+          editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/',
+            'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -137,14 +137,6 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book',
-              },
-              {
-                label: 'Research Papers',
-                href: '/docs/research/papers'
-              },
-              {
-                label: 'Tutorials',
-                href: '/docs/tutorials/getting-started'
               }
             ],
           },
