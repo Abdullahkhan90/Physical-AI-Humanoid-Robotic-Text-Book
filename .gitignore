@@ -103,6 +103,13 @@ public
 
 # Ignore all generated content for Docusaurus
 .dist/
+.docusaurus/
+
+# Docusaurus static files
+static/
+
+# Docusaurus cache
+.cache/
 
 # Temporary files for development
 *.tmp
