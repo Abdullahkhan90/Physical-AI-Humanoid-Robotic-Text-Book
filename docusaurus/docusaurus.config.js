@@ -14,11 +14,11 @@ const config = {
   url: 'https://abdullahkhan90.github.io', // Updated to match your GitHub username
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub Pages: https://<USERNAME>.github.io/<REPO>/
-  baseUrl: '/Physical-AI-Humanoid_Robotic-Text-Book/', // Updated to match your repository name
+  baseUrl: '/Physical-AI-Humanoid-Robotic-Text-Book/', // Updated to match your repository name
 
   // GitHub pages deployment config.
   organizationName: 'Abdullahkhan90', // Usually your GitHub org/user name.
-  projectName: 'Physical-AI-Humanoid_Robotic-Text-Book', // Usually your repo name.
+  projectName: 'Physical-AI-Humanoid-Robotic-Text-Book', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -60,6 +60,7 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      metadata: [{ tagName: 'base', attributes: { href: '/Physical-AI-Humanoid-Robotic-Text-Book' } }],
       navbar: {
         title: 'AI Physical AI & Humanoid Robotics Textbook',
         logo: {
