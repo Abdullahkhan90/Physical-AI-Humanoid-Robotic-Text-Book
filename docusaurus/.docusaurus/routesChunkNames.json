@@ -1,0 +1,158 @@
+{
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug-3e3": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/config-0e6": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/content-c4c": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    },
+    "allContent": "allContent---ai-textbook-physical-ai-humanoid-docusaurus-debug-content-246-bdf"
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/globalData-543": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/metadata-b98": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/registry-023": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/__docusaurus/debug/routes-f4d": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docusaurus-debug-739-ceb"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/module/-d37": {
+    "__comp": "__comp---site-src-pages-module-index-jsx-166-18a",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-module-d-8-e-2a3"
+    },
+    "config": "config---ai-textbook-physical-ai-humanoid-module-5-e-9-8f2"
+  },
+  "/ai-textbook-physical-ai-humanoid/module/content-ab6": {
+    "__comp": "__comp---site-src-pages-module-content-jsx-333-789",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-module-d-8-e-2a3"
+    },
+    "config": "config---ai-textbook-physical-ai-humanoid-module-5-e-9-8f2"
+  },
+  "/ai-textbook-physical-ai-humanoid/modules-06d": {
+    "__comp": "__comp---site-src-pages-modules-jsx-474-7c1",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-module-d-8-e-2a3"
+    },
+    "config": "config---ai-textbook-physical-ai-humanoid-module-5-e-9-8f2"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs-b88": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-docs-7-c-7-72c"
+    }
+  },
+  "/ai-textbook-physical-ai-humanoid/docs-e4e": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "version": "version---ai-textbook-physical-ai-humanoid-docs-935-f63"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs-2a8": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/assets/citations-76f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-assets-citations-971-9b2"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/intro-120": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-intro-0-e-3-3f8"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/integrating-python-agents-9f8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-1-ros-2-integrating-python-agents-5-fe-76d"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/intro-444": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-1-ros-2-intro-370-7c6"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/nodes-topics-services-cab": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-1-ros-2-nodes-topics-servicesd-40-10f"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/summary-exercises-6d9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-1-ros-2-summary-exercisesc-90-8c2"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/urdf-humanoids-46c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-1-ros-2-urdf-humanoidsb-6-f-852"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/gazebo-physics-898": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-2-digital-twin-gazebo-physicsc-0-f-955"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/intro-bd7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-2-digital-twin-intro-57-d-bc9"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/unity-integration-bf4": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-2-digital-twin-unity-integration-88-b-83f"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/intro-77a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-3-ai-brain-intro-503-4d5"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/isaac-sim-d71": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-3-ai-brain-isaac-sim-078-71e"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/nav2-humanoid-dec": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-3-ai-brain-nav-2-humanoid-2-ad-a7f"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/visual-slam-1c3": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-3-ai-brain-visual-slamb-93-0cb"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/capstone-project-37f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-4-vla-capstone-projectcd-1-ace"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/cognitive-planning-e2d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-4-vla-cognitive-planning-2-de-d92"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/intro-82f": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-4-vla-intro-361-074"
+  },
+  "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/voice-to-action-694": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---ai-textbook-physical-ai-humanoid-docs-module-4-vla-voice-to-actiona-7-f-6c3"
+  },
+  "/ai-textbook-physical-ai-humanoid/-175": {
+    "__comp": "__comp---site-src-pages-index-jsx-9-dd-cb1",
+    "__context": {
+      "plugin": "plugin---ai-textbook-physical-ai-humanoid-module-d-8-e-2a3"
+    },
+    "config": "config---ai-textbook-physical-ai-humanoid-module-5-e-9-8f2"
+  }
+}

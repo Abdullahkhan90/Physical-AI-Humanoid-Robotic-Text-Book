@@ -1,0 +1,96 @@
+.contentDisplay {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.contentHeader {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.contentTitle {
+  margin: 0 0 1rem 0;
+  color: #252525;
+}
+
+.contentMeta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.contentMeta span {
+  display: flex;
+  align-items: center;
+}
+
+.contentBody {
+  margin: 1.5rem 0;
+}
+
+.contentText {
+  line-height: 1.6;
+}
+
+.contentText h1,
+.contentText h2,
+.contentText h3,
+.contentText h4,
+.contentText h5,
+.contentText h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.contentText p {
+  margin-bottom: 1em;
+}
+
+.contentText ul,
+.contentText ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.citationsSection {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.citationsSection h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.citationsList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.citationItem {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  background-color: #f9f9f9;
+  border-left: 3px solid #25c2a0;
+}
+
+.citationText {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .contentDisplay {
+    padding: 1rem 0.5rem;
+  }
+  
+  .contentMeta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

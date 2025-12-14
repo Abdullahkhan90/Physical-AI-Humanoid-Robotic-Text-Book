@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run start)",
+      "Bash(npm install)",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm install --legacy-peer-deps)",
+      "Bash(npm install:*)",
+      "WebSearch",
+      "Bash(tasklist)",
+      "Bash(findstr \"node\")",
+      "Bash(find src -name \"*.jsx\" -exec grep -l \"interface\\|:.*=>\" {} ;)",
+      "Bash(find src -name \"*.jsx\" -exec grep -l \"interface\\|:.*=>\\|as\\s\\+\\(light\\|dark\\)\" {} ;)",
+      "Bash(npx docusaurus build)",
+      "Bash(find:*)"
+    ]
+  }
+}

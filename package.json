@@ -1,0 +1,15 @@
+{
+  "name": "ai-textbook-project",
+  "version": "1.0.0",
+  "description": "AI Native Textbook on Physical AI & Humanoid Robotics",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd docusaurus && npm start",
+    "docusaurus": "cd docusaurus && npx docusaurus",
+    "build": "cd docusaurus && npm run build",
+    "dev": "cd docusaurus && npm run start"
+  },
+  "dependencies": {
+    "prism-react-renderer": "^2.4.1"
+  }
+}

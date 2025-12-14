@@ -1,0 +1,28 @@
+{
+  "id": "module-1-ros2/integrating-python-agents",
+  "title": "Integrating Python Agents with ROS Controllers",
+  "description": "One of the key strengths of ROS 2 is its support for multiple programming languages. Python, being the language of choice for many AI and machine learning frameworks, becomes an ideal bridge between AI agents and robot control systems. The rclpy client library allows us to interface Python AI agents with ROS controllers.",
+  "source": "@site/docs/module-1-ros2/integrating-python-agents.md",
+  "sourceDirName": "module-1-ros2",
+  "slug": "/module-1-ros2/integrating-python-agents",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/integrating-python-agents",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/module-1-ros2/integrating-python-agents.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3,
+    "title": "Integrating Python Agents with ROS Controllers"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ROS 2 Nodes, Topics, and Services",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/nodes-topics-services"
+  },
+  "next": {
+    "title": "URDF for Humanoid Robots",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/urdf-humanoids"
+  }
+}

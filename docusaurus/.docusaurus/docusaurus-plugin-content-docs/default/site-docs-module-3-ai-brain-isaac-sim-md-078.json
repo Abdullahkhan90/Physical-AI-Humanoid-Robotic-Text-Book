@@ -1,0 +1,28 @@
+{
+  "id": "module-3-ai-brain/isaac-sim",
+  "title": "NVIDIA Isaac Sim for Photorealistic Simulation",
+  "description": "NVIDIA Isaac Sim is a robotics simulator based on NVIDIA Omniverse that provides advanced physics simulation capabilities and photorealistic rendering for robotics applications. It enables rapid development and testing of robot applications in virtual environments that closely match real-world conditions.",
+  "source": "@site/docs/module-3-ai-brain/isaac-sim.md",
+  "sourceDirName": "module-3-ai-brain",
+  "slug": "/module-3-ai-brain/isaac-sim",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/isaac-sim",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/module-3-ai-brain/isaac-sim.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "NVIDIA Isaac Sim for Photorealistic Simulation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction to AI-Robot Brain with NVIDIA Isaac",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/intro"
+  },
+  "next": {
+    "title": "Isaac ROS for Hardware-Accelerated VSLAM",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/visual-slam"
+  }
+}

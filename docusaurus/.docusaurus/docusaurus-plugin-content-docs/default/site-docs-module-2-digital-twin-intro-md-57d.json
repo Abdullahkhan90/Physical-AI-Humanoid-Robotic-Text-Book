@@ -1,0 +1,28 @@
+{
+  "id": "module-2-digital-twin/intro",
+  "title": "Introduction to Digital Twins in Robotics",
+  "description": "The digital twin concept involves creating a virtual replica of a physical system. In robotics, this means having a virtual representation of a robot that mirrors its physical counterpart. This module focuses on using Gazebo and Unity for creating realistic physics simulations and environments for robots.",
+  "source": "@site/docs/module-2-digital-twin/intro.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/intro",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/module-2-digital-twin/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1,
+    "title": "Introduction to Digital Twins in Robotics"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Summary and Exercises",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/summary-exercises"
+  },
+  "next": {
+    "title": "Physics Simulation in Gazebo",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/gazebo-physics"
+  }
+}

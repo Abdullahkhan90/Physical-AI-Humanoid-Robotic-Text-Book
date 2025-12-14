@@ -1,0 +1,28 @@
+{
+  "id": "module-1-ros2/nodes-topics-services",
+  "title": "ROS 2 Nodes, Topics, and Services",
+  "description": "In ROS 2, nodes communicate through a publish-subscribe model using topics, services, and actions. Understanding these communication patterns is essential for building distributed robotic systems.",
+  "source": "@site/docs/module-1-ros2/nodes-topics-services.md",
+  "sourceDirName": "module-1-ros2",
+  "slug": "/module-1-ros2/nodes-topics-services",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/nodes-topics-services",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/module-1-ros2/nodes-topics-services.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2,
+    "title": "ROS 2 Nodes, Topics, and Services"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction to ROS 2",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/intro"
+  },
+  "next": {
+    "title": "Integrating Python Agents with ROS Controllers",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/integrating-python-agents"
+  }
+}

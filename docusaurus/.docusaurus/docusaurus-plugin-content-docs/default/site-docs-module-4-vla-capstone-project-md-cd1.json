@@ -1,0 +1,24 @@
+{
+  "id": "module-4-vla/capstone-project",
+  "title": "Capstone Project - The Autonomous Humanoid",
+  "description": "The capstone project brings together all the concepts learned in previous modules to create an integrated autonomous humanoid robot system. This project involves implementing a simulated humanoid robot that can receive voice commands, plan paths, navigate obstacles, identify objects, and manipulate them based on user instructions.",
+  "source": "@site/docs/module-4-vla/capstone-project.md",
+  "sourceDirName": "module-4-vla",
+  "slug": "/module-4-vla/capstone-project",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/capstone-project",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/module-4-vla/capstone-project.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5,
+    "title": "Capstone Project - The Autonomous Humanoid"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Cognitive Planning with LLMs",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/cognitive-planning"
+  }
+}

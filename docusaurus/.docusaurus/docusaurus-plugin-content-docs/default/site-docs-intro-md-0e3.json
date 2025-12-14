@@ -1,0 +1,20 @@
+{
+  "id": "intro",
+  "title": "Welcome to the AI Native Textbook on Physical AI & Humanoid Robotics",
+  "description": "This textbook provides a comprehensive guide to understanding and working with Physical AI and Humanoid Robotics through hands-on experiences in simulated and real-world environments.",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/ai-textbook-physical-ai-humanoid/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/AI-Textbook-Project/ai-textbook-physical-ai-humanoid/edit/main/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Welcome to the AI Native Textbook on Physical AI & Humanoid Robotics",
+    "permalink": "/ai-textbook-physical-ai-humanoid/docs/intro"
+  }
+}

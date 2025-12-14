@@ -1,0 +1,117 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/ai-textbook-physical-ai-humanoid/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/ai-textbook-physical-ai-humanoid/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "assets/citations",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/assets/citations"
+            },
+            {
+              "id": "intro",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1-ros2/integrating-python-agents",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/integrating-python-agents",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1-ros2/intro",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1-ros2/nodes-topics-services",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/nodes-topics-services",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1-ros2/summary-exercises",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/summary-exercises",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-1-ros2/urdf-humanoids",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-1-ros2/urdf-humanoids",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-2-digital-twin/gazebo-physics",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/gazebo-physics",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-2-digital-twin/intro",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-2-digital-twin/unity-integration",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-2-digital-twin/unity-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-3-ai-brain/intro",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-3-ai-brain/isaac-sim",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/isaac-sim",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-3-ai-brain/nav2-humanoid",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/nav2-humanoid",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-3-ai-brain/visual-slam",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-3-ai-brain/visual-slam",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-4-vla/capstone-project",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/capstone-project",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-4-vla/cognitive-planning",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/cognitive-planning",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-4-vla/intro",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-4-vla/voice-to-action",
+              "path": "/ai-textbook-physical-ai-humanoid/docs/module-4-vla/voice-to-action",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/ai-textbook-physical-ai-humanoid/docs/intro",
+                "label": "Introduction"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

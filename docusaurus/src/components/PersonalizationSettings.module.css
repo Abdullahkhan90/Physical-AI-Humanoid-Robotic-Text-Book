@@ -1,0 +1,167 @@
+.settingsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settingsContainer h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.settingsSection {
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  background-color: var(--ifm-toc-border-color);
+}
+
+.settingsSection h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+  padding-bottom: 0.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.formGroup input[type="radio"],
+.formGroup input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--ifm-color-emphasis-500);
+  border-radius: 4px;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.topicGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.topicCheckbox {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.topicCheckbox:hover {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+.topicCheckbox input {
+  margin-right: 0.5rem;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.saveButton {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.resetButton {
+  background-color: var(--ifm-color-gray-300);
+  color: var(--ifm-color-gray-900);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.resetButton:hover {
+  background-color: var(--ifm-color-gray-400);
+}
+
+/* Dark mode adjustments */
+html[data-theme='dark'] .settingsContainer {
+  background-color: #2d3748;
+}
+
+html[data-theme='dark'] .settingsSection {
+  background-color: #4a5568;
+  border-color: #718096;
+}
+
+html[data-theme='dark'] .topicCheckbox:hover {
+  background-color: #718096;
+}
+
+html[data-theme='dark'] .resetButton {
+  background-color: #a0aec0;
+  color: #2d3748;
+}
+
+@media (max-width: 768px) {
+  .settingsContainer {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .settingsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .topicGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+  }
+  
+  .saveButton, .resetButton {
+    width: 100%;
+  }
+}

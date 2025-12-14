@@ -1,0 +1,201 @@
+# Textbook API Contracts
+
+## Base URL
+`https://ai-textbook.example.com/api`
+
+## Authentication
+Public access - no authentication required
+
+---
+
+## Module Endpoints
+
+### GET /modules
+Retrieve all textbook modules
+
+**Response 200 (application/json)**
+```json
+{
+  "modules": [
+    {
+      "id": "module-1-ros2",
+      "title": "The Robotic Nervous System (ROS 2)",
+      "description": "Middleware for robot control",
+      "topics": ["ROS 2 Nodes, Topics, and Services", "Bridging Python Agents to ROS controllers using rclpy", "URDF (Unified Robot Description Format) for Humanoids"],
+      "learningObjectives": ["Understanding of the ROS 2 architecture", "Practical application of rclpy", "Ability to model humanoid robots using URDF"],
+      "contentPath": "/docs/module-1-ros2/",
+      "order": 1,
+      "isActive": true
+    },
+    {
+      "id": "module-2-digital-twin",
+      "title": "The Digital Twin (Gazebo & Unity)",
+      "description": "Physics simulation and environment building",
+      "topics": ["Simulating physics, gravity, and collisions in Gazebo", "High-fidelity rendering and human-robot interaction in Unity", "Simulating sensors: LiDAR, Depth Cameras, and IMUs"],
+      "learningObjectives": ["Ability to set up and configure a realistic simulation environment", "Understanding how to implement and simulate various robot sensors"],
+      "contentPath": "/docs/module-2-digital-twin/",
+      "order": 2,
+      "isActive": true
+    }
+  ]
+}
+```
+
+---
+
+## Content Endpoints
+
+### GET /modules/{moduleId}/content
+Retrieve all content for a specific module
+
+**Path Parameters**
+- moduleId: string (the unique identifier of the module)
+
+**Response 200 (application/json)**
+```json
+{
+  "moduleId": "module-1-ros2",
+  "contentList": [
+    {
+      "id": "content-1-1",
+      "title": "Introduction to ROS 2",
+      "content": "# Introduction to ROS 2\n\nROS 2 (Robot Operating System 2) is a flexible framework for writing robot applications...",
+      "contentType": "theory",
+      "wordCount": 1200,
+      "estimatedReadingTime": 5,
+      "requiredCitations": [
+        {
+          "id": "cit-001",
+          "title": "A survey of robot software frameworks",
+          "authors": ["Smith, J.", "Johnson, A."],
+          "source": "Journal of Robotics",
+          "year": 2022,
+          "doi": "10.1155/2022/1234567",
+          "url": "https://www.hindawi.com/journals/jr/2022/1234567/",
+          "citationType": "journalArticle",
+          "apaFormatted": "Smith, J., & Johnson, A. (2022). A survey of robot software frameworks. Journal of Robotics. https://doi.org/10.1155/2022/1234567"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
+## RAG Chatbot Endpoints
+
+### POST /chatbot/query
+Submit a query to the RAG chatbot and receive a response
+
+**Request (application/json)**
+```json
+{
+  "query": "Explain how ROS 2 nodes communicate with each other",
+  "userId": "user-12345",
+  "context": "module-1-ros2"  // optional, to limit search scope
+}
+```
+
+**Response 200 (application/json)**
+```json
+{
+  "query": "Explain how ROS 2 nodes communicate with each other",
+  "answer": "ROS 2 nodes communicate through a publish-subscribe model using topics, services, and actions. In the publish-subscribe pattern, nodes can publish messages to topics and other nodes can subscribe to those topics to receive messages...",
+  "sources": [
+    {
+      "moduleId": "module-1-ros2",
+      "contentId": "content-1-1",
+      "title": "Introduction to ROS 2",
+      "relevanceScore": 0.92
+    }
+  ],
+  "confidence": 0.85
+}
+```
+
+---
+
+## Personalization Endpoints
+
+### GET /user/{userId}/preferences
+Retrieve a student's preferences and settings
+
+**Path Parameters**
+- userId: string (the unique identifier of the student)
+
+**Response 200 (application/json)**
+```json
+{
+  "userId": "user-12345",
+  "preferences": {
+    "learningPace": "moderate",
+    "preferredTopics": ["ROS 2", "Gazebo"],
+    "notificationSettings": {
+      "email": true,
+      "push": false
+    }
+  },
+  "progress": {
+    "module-1-ros2": {
+      "completed": true,
+      "completionPercentage": 100
+    },
+    "module-2-digital-twin": {
+      "completed": false,
+      "completionPercentage": 45
+    }
+  },
+  "personalizationSettings": {
+    "darkMode": true,
+    "fontSize": "medium"
+  },
+  "preferredLanguage": "en"
+}
+```
+
+### PUT /user/{userId}/preferences
+Update a student's preferences
+
+**Path Parameters**
+- userId: string (the unique identifier of the student)
+
+**Request (application/json)**
+```json
+{
+  "preferredLanguage": "ur"
+}
+```
+
+**Response 200 (application/json)**
+```json
+{
+  "status": "Preferences updated successfully"
+}
+```
+
+---
+
+## Citation Endpoints
+
+### GET /citations
+Retrieve all citations in the textbook
+
+**Response 200 (application/json)**
+```json
+{
+  "citations": [
+    {
+      "id": "cit-001",
+      "title": "A survey of robot software frameworks",
+      "authors": ["Smith, J.", "Johnson, A."],
+      "source": "Journal of Robotics",
+      "year": 2022,
+      "doi": "10.1155/2022/1234567",
+      "url": "https://www.hindawi.com/journals/jr/2022/1234567/",
+      "citationType": "journalArticle",
+      "apaFormatted": "Smith, J., & Johnson, A. (2022). A survey of robot software frameworks. Journal of Robotics. https://doi.org/10.1155/2022/1234567"
+    }
+  ]
+}
+```

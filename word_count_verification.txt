@@ -1,0 +1,21 @@
+Total word count: 9019
+Range: 15,000 - 20,000
+Status: FAIL
+
+Breakdown by file:
+docusaurus/docs/module-1-ros2\integrating-python-agents.md: 441 words
+docusaurus/docs/module-1-ros2\intro.md: 264 words
+docusaurus/docs/module-1-ros2\nodes-topics-services.md: 490 words
+docusaurus/docs/module-1-ros2\summary-exercises.md: 817 words
+docusaurus/docs/module-1-ros2\urdf-humanoids.md: 433 words
+docusaurus/docs/module-2-digital-twin\gazebo-physics.md: 495 words
+docusaurus/docs/module-2-digital-twin\intro.md: 235 words
+docusaurus/docs/module-2-digital-twin\unity-integration.md: 874 words
+docusaurus/docs/module-3-ai-brain\intro.md: 480 words
+docusaurus/docs/module-3-ai-brain\isaac-sim.md: 857 words
+docusaurus/docs/module-3-ai-brain\nav2-humanoid.md: 571 words
+docusaurus/docs/module-3-ai-brain\visual-slam.md: 598 words
+docusaurus/docs/module-4-vla\capstone-project.md: 645 words
+docusaurus/docs/module-4-vla\cognitive-planning.md: 544 words
+docusaurus/docs/module-4-vla\intro.md: 593 words
+docusaurus/docs/module-4-vla\voice-to-action.md: 682 words
