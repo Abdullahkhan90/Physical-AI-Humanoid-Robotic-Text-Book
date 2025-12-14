@@ -7,7 +7,8 @@
     "start": "cd docusaurus && npm start",
     "docusaurus": "cd docusaurus && npx docusaurus",
     "build": "cd docusaurus && npm run build",
-    "dev": "cd docusaurus && npm run start"
+    "dev": "cd docusaurus && npm run start",
+    "deploy": "cd docusaurus && npm run deploy"
   },
   "dependencies": {
     "prism-react-renderer": "^2.4.1"
