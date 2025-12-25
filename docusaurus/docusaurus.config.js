@@ -45,40 +45,19 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+          path: './blog',
+          routeBasePath: '/blog',
+          editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} Physical AI Humanoid Robotic Text Book`,
+          },
+          authorsMapPath: null, // Disable authors map to avoid errors
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
-    ],
-  ],
-
-  plugins: [
-    // Explicitly configure the blog plugin to fix "File is not defined" error
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        /**
-         * Required for any multi-instance plugin
-         */
-        id: 'blog',
-        /**
-         * URL route for the blog section of your site.
-         * *DO NOT* include a trailing slash.
-         */
-        routeBasePath: '/blog',
-        /**
-         * Path to data on filesystem relative to site dir.
-         */
-        path: './blog',
-        showReadingTime: true,
-        // Please change this to your repo.
-        editUrl:
-          'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
-      },
     ],
   ],
 
@@ -88,7 +67,8 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       metadata: [
-        {name: 'description', content: 'AI-Native Textbook on Physical AI & Humanoid Robotics'}
+        {name: 'description', content: 'AI-Native Textbook on Physical AI & Humanoid Robotics'},
+        {name: 'keywords', content: 'robotics, AI, textbook, humanoid, physical AI'}
       ],
       navbar: {
         title: 'Physical AI Humanoid Robotic Text Book',

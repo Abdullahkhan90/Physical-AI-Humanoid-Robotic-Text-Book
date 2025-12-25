@@ -1,11 +1,15 @@
-name: Deploy Docusaurus to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
+
+  contents: read
   contents: write
+
   pages: write
   id-token: write
 
@@ -14,9 +18,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
+
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -27,15 +40,29 @@ jobs:
           cache: 'npm'
           cache-dependency-path: docusaurus/package-lock.json
 
+
       - name: Install dependencies
         run: |
           cd docusaurus
           npm ci
 
-      - name: Build
+      - name: Build website
         run: |
           cd docusaurus
           npm run build
+
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docusaurus/build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -52,3 +79,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
