@@ -45,10 +45,13 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           path: './blog',
           routeBasePath: '/blog',
           editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} Physical AI Humanoid Robotic Text Book`,
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -63,7 +66,8 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       metadata: [
-        {name: 'description', content: 'AI-Native Textbook on Physical AI & Humanoid Robotics'}
+        {name: 'description', content: 'AI-Native Textbook on Physical AI & Humanoid Robotics'},
+        {name: 'keywords', content: 'robotics, AI, textbook, humanoid, physical AI'}
       ],
       navbar: {
         title: 'Physical AI Humanoid Robotic Text Book',
