@@ -52,6 +52,7 @@ const config = {
             type: 'all',
             copyright: `Copyright © ${new Date().getFullYear()} Physical AI Humanoid Robotic Text Book`,
           },
+          authorsMapPath: null, // Disable authors map to avoid errors
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
