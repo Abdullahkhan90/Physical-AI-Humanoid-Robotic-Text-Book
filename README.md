@@ -1,8 +1,10 @@
+
 # Physical AI & Humanoid Robotics Textbook
 
 > Comprehensive 13-week textbook for industry practitioners: ROS 2, Digital Twin (Gazebo/Unity), NVIDIA Isaac Sim, and Vision-Language-Action models.
 
-[![Deploy to GitHub Pages](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-book/actions/workflows/deploy.yml/badge.svg)](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-book/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/deploy.yml/badge.svg)](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/deploy.yml)
+[![Build Validation](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/main.yml/badge.svg)](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/main.yml)
  https://abdullahkhan90.github.io/Physical-AI-Humanoid-Robotic-Text-Book/
 
 ## Overview
@@ -15,6 +17,8 @@ This textbook provides hands-on training for building autonomous humanoid robots
 
 **Target Audience**: Industry practitioners with Python programming knowledge, transitioning to robotics and embodied AI.
 
+This repository contains an AI Native Textbook on Physical AI & Humanoid Robotics, built with Docusaurus. The textbook covers essential topics in robotics, AI, and their integration for developing advanced humanoid robotic systems.
+
 ## Course Structure
 
 | Module | Weeks | Focus |
@@ -26,6 +30,24 @@ This textbook provides hands-on training for building autonomous humanoid robots
 | Module 4: VLA & Humanoids | 11-13 | Multimodal Models, Transformer Policies |
 | Capstone | Week 13 | Autonomous Humanoid (Voice → Action) |
 
+## Modules
+
+The textbook is organized into the following modules:
+
+- **Module 1**: The Robotic Nervous System (ROS 2)
+- **Module 2**: The Digital Twin (Gazebo & Unity)
+- **Module 3**: The AI-Robot Brain (NVIDIA Isaac)
+- **Module 4**: Vision-Language-Action (VLA)
+
+## Features
+
+- Interactive textbook with hands-on examples
+- Comprehensive coverage of Physical AI and Humanoid Robotics
+- Integration with ROS 2 for robotic nervous systems
+- Physics simulation and environment building using Gazebo and Unity
+- NVIDIA Isaac integration for AI-driven robotics
+- Vision-Language-Action (VLA) systems for advanced robot control
+
 ## Hardware Paths
 
 Choose one of three hardware configurations:
@@ -34,20 +56,39 @@ Choose one of three hardware configurations:
 2. **Physical AI Edge Kit**: NVIDIA Jetson Orin Nano
 3. **Cloud-Native**: AWS/Azure with GPU instances
 
-## Quick Start
+## Getting Started
 
+To run this project locally:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book.git
+   cd Physical-AI-Humanoid-Robotic-Text-Book
+   ```
+
+2. **Navigate to the docusaurus directory:**
+   ```bash
+   cd docusaurus
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run start
+   ```
+
+5. **Open your browser to [http://localhost:3000](http://localhost:3000) to see the textbook.**
+
+## Alternative Method
+
+From the root directory, you can use the scripts defined in the root package.json:
 ```bash
-# Clone the repository
-git clone https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotics-Text-book.git
-cd Physical-AI-Humanoid-Robotics-Textbook
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-
-# Open http://localhost:3000
+npm install  # Install root dependencies
+npm run dev  # Start the docusaurus development server
 ```
 
 ## Documentation Site
@@ -81,15 +122,18 @@ Physical-AI-Humanoid-Robotics-Textbook/
 │       ├── plan.md
 │       ├── tasks.md
 │       └── contracts/      # JSON Schema for validation
+├── backend/                # Backend services for RAG chatbot
+│   ├── src/
+│   ├── api/
+│   ├── models/
+│   ├── services/
+│   └── tests/
 └── .github/workflows/      # CI/CD pipelines
 ```
 
 ## Contributing
 
-We welcome contributions!
-- Development setup
-- Creating new chapters
-
+We welcome contributions to improve the textbook! Please feel free to submit pull requests or create issues for suggestions and bug reports.
 
 ### Quality Gates
 
@@ -114,6 +158,8 @@ This project follows **Spec-Driven Development (SDD)** using [Spec-Kit Plus](htt
 - **Documentation**: Docusaurus 3.x
 - **Language**: TypeScript 5.x
 - **UI**: React 18.x
+- **Backend**: Python, FastAPI
+- **Database**: Qdrant (vector database)
 - **Build Tools**: Node.js 18+
 - **Search**: Algolia DocSearch + Flexsearch
 - **CI/CD**: GitHub Actions
@@ -146,8 +192,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotics-Textbook/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotics-Textbook/discussions)
+- **Issues**: [GitHub Issues](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/discussions)
 
 ---
 

@@ -1,0 +1,11 @@
+# Ignore generated files for language statistics
+docs/** linguist-generated=true
+docusaurus/build/** linguist-generated=true
+
+# Also ignore other common generated files
+*.html linguist-generated=true
+*.css linguist-generated=true
+*.js linguist-generated=true
+
+# Include documentation files as source code
+docusaurus/docs/** linguist-documentation=false
