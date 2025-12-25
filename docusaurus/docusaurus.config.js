@@ -41,13 +41,13 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book/edit/main/',
+          editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book/edit/main/',
+            'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -56,12 +56,40 @@ const config = {
     ],
   ],
 
+  plugins: [
+    // Explicitly configure the blog plugin to fix "File is not defined" error
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'blog',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: '/blog',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './blog',
+        showReadingTime: true,
+        // Please change this to your repo.
+        editUrl:
+          'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+      },
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
-      metadata: [{ tagName: 'base', attributes: { href: '/Physical-AI-Humanoid-Robotic-Text-Book' } }],
+      metadata: [
+        {name: 'description', content: 'AI-Native Textbook on Physical AI & Humanoid Robotics'}
+      ],
       navbar: {
         title: 'Physical AI Humanoid Robotic Text Book',
         logo: {
@@ -75,7 +103,7 @@ const config = {
             position: 'left',
             label: 'Textbook Modules',
           },
-          { to: '/modules', label: 'Updates', position: 'left' },
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://www.linkedin.com/in/hafiz-abdullah-4239a62a4',
             label: 'LinkedIn',
@@ -86,7 +114,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book',
+            href: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book',
             label: 'GitHub',
             position: 'right',
           },
@@ -138,7 +166,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book',
+                href: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book',
               }
             ],
           },

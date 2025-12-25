@@ -104,6 +104,7 @@ public
 # Ignore all generated content for Docusaurus
 .dist/
 .docusaurus/
+build/
 
 # Docusaurus static files
 static/
