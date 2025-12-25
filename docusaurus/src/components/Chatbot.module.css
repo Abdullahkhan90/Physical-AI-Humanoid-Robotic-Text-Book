@@ -36,6 +36,35 @@
   opacity: 0.9;
 }
 
+.selectedTextPreview {
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(255, 255, 200, 0.3);
+  border-left: 2px solid var(--ifm-color-primary);
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.dark .selectedTextPreview {
+  background-color: rgba(255, 255, 200, 0.1);
+  color: #a0aec0;
+}
+
+.citationLink {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 4px;
+}
+
+.citationLink:hover {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
 .chatMessages {
   flex: 1;
   overflow-y: auto;

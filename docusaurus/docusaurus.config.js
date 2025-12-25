@@ -6,18 +6,19 @@ const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'AI Native Textbook on Physical AI & Humanoid Robotics',
-  tagline: 'Teaching the principles of Physical AI and Humanoid Robotics through hands-on experiences',
+  title: 'Physical AI Humanoid Robotic Text Book',
+  tagline: 'AI-Native Textbook on Physical AI & Humanoid Robotics',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://abdullahkhan90.github.io', // Updated to match your GitHub username
+  url: 'https://abdullahkhan90.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub Pages: https://<USERNAME>.github.io/<REPO>/
-  baseUrl: '/Physical-AI-Humanoid-Robotic-Text-Book/', // Updated to match your repository name
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  baseUrl: '/Physical-AI-Humanoid-Robotic-Text-Book/',
 
   // GitHub pages deployment config.
-  organizationName: 'Abdullahkhan90', // Usually your GitHub org/user name.
+  // If you aren't using GitHub pages, you don't need these.
+  organizationName: 'abdullahkhan90', // Usually your GitHub org/user name.
   projectName: 'Physical-AI-Humanoid-Robotic-Text-Book', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -40,13 +41,13 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+          editUrl: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book/edit/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
+            'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -62,9 +63,9 @@ const config = {
       image: 'img/docusaurus-social-card.jpg',
       metadata: [{ tagName: 'base', attributes: { href: '/Physical-AI-Humanoid-Robotic-Text-Book' } }],
       navbar: {
-        title: 'AI Physical AI & Humanoid Robotics Textbook',
+        title: 'Physical AI Humanoid Robotic Text Book',
         logo: {
-          alt: 'AI Physical AI & Humanoid Robotics Logo',
+          alt: 'Physical AI Humanoid Robotic Text Book Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -85,7 +86,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book',
+            href: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book',
             label: 'GitHub',
             position: 'right',
           },
@@ -137,12 +138,12 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book',
+                href: 'https://github.com/Abdullahkhan90/physical-ai-humanoid-robotic-text-book',
               }
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} AI Native Textbook on Physical AI & Humanoid Robotics Project. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Physical AI Humanoid Robotic Text Book. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
