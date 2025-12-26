@@ -3,7 +3,7 @@
 
 > Comprehensive 13-week textbook for industry practitioners: ROS 2, Digital Twin (Gazebo/Unity), NVIDIA Isaac Sim, and Vision-Language-Action models.
 
-[![Deploy to GitHub Pages](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/deploy.yml/badge.svg)]
+![Deploy to GitHub Pages](https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/actions/workflows/deploy.yml/badge.svg)
  https://abdullahkhan90.github.io/Physical-AI-Humanoid-Robotic-Text-Book/
 
 ## Overview
