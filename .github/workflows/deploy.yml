@@ -16,15 +16,22 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy to GitHub Pages
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    # Environment add kar diya taake 400 error na aaye
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: docusaurus/package-lock.json
 
       - name: Install dependencies
         run: |
