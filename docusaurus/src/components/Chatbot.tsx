@@ -74,7 +74,7 @@ const Chatbot = () => {
 
     try {
       let endpoint = '/api/query';
-      let body = { question: inputValue };
+      let body: any = { question: inputValue };
 
       if (selectedText) {
         endpoint = '/api/query-selected';
@@ -82,7 +82,10 @@ const Chatbot = () => {
       }
 
       const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-      const baseUrl = isLocal ? "http://localhost:8000" : "";
+      const baseUrl = isLocal ? "http://localhost:8000" : "https://hafizabdullah9-backend-rag-chatbot.hf.space";
+
+      console.log('Sending request to:', `${baseUrl}${endpoint}`);
+      console.log('Request body:', body);
 
       const response = await fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
@@ -90,9 +93,17 @@ const Chatbot = () => {
         body: JSON.stringify(body)
       });
 
-      if (!response.ok) throw new Error('API error');
+      console.log('Response status:', response.status);
+      console.log('Response statusText:', response.statusText);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API error response:', errorText);
+        throw new Error(`API error: ${response.status} - ${response.statusText} - ${errorText}`);
+      }
 
       const data = await response.json();
+      console.log('API response data:', data);
 
       // Format the response
       const botResponse: ChatMessage = {
@@ -105,9 +116,16 @@ const Chatbot = () => {
       setMessages(prev => [...prev, botResponse]);
       setSelectedText('');
     } catch (err) {
+      console.error('Chatbot error details:', err);
+      let errorMessageText = 'Sorry, I encountered an error processing your request. Backend might not be reachable. Run local backend for full functionality.';
+
+      if (err instanceof Error) {
+        errorMessageText = `Error: ${err.message}`;
+      }
+
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        text: 'Sorry, I encountered an error processing your request. Backend might not be reachable. Run local backend for full functionality.',
+        text: errorMessageText,
         isUser: false,
         timestamp: new Date(),
       };
