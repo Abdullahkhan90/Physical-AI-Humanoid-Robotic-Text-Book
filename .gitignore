@@ -120,4 +120,5 @@ static/
 .idea/
 .vscode/
 *.swp
-*.swo
+*.swo"backend/test_*.py" 
+"execute_git_commands.py" 
