@@ -24,11 +24,11 @@ else:
     cohere_client = Client(cohere_api_key)
 
 # Use the cloud URL and API key directly as provided by the user
-qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333"
+qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io"
 qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA"
 
 qdrant_client = QdrantClient(
-    url=qdrant_endpoint,
+    url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io",  # Removed :6333 as cloud instances handle this differently
     api_key=qdrant_api_key,
     timeout=60,  # optional - timeout badhane ke liye
     verify=False,  # optional - agar SSL issue aaye to
