@@ -31,7 +31,8 @@ qdrant_client = QdrantClient(
     url=qdrant_endpoint,
     api_key=qdrant_api_key,
     timeout=60,  # optional - timeout badhane ke liye
-    verify=False  # optional - agar SSL issue aaye to
+    verify=False,  # optional - agar SSL issue aaye to
+    check_compatibility=False  # Added to address the compatibility warning
 )
 
 # Create collection if not exists (only if we have valid Qdrant credentials)
