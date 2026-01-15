@@ -84,17 +84,37 @@ const Chatbot = () => {
       const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
       const baseUrl = isLocal ? "http://localhost:8000" : "https://hafizabdullah9-backend-rag-chatbot.hf.space";
 
+      // First, test if the backend is reachable at all
+      try {
+        console.log('Testing backend connectivity...');
+        const testResponse = await fetch(`${baseUrl}/health`);
+        console.log('Health check response:', testResponse.status, await testResponse.text());
+      } catch (testErr) {
+        console.error('Health check failed:', testErr);
+      }
+
       console.log('Sending request to:', `${baseUrl}${endpoint}`);
       console.log('Request body:', body);
+
+      console.log('Making request to:', `${baseUrl}${endpoint}`);
+      console.log('Request headers:', { 'Content-Type': 'application/json' });
+      console.log('Request body:', JSON.stringify(body));
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
       const response = await fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
+        signal: controller.signal
       });
+
+      clearTimeout(timeoutId);
 
       console.log('Response status:', response.status);
       console.log('Response statusText:', response.statusText);
+      console.log('Response headers:', [...response.headers.entries()]);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -108,7 +128,7 @@ const Chatbot = () => {
       // Format the response
       const botResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        text: data.answer || 'No answer found in the textbook content.',
+        text: data.answer || data.message || 'No answer found in the textbook content.',
         isUser: false,
         timestamp: new Date(),
       };
@@ -120,7 +140,13 @@ const Chatbot = () => {
       let errorMessageText = 'Sorry, I encountered an error processing your request. Backend might not be reachable. Run local backend for full functionality.';
 
       if (err instanceof Error) {
-        errorMessageText = `Error: ${err.message}`;
+        if (err.name === 'AbortError') {
+          errorMessageText = 'Request timed out. The backend might be temporarily unavailable.';
+        } else {
+          errorMessageText = `Error: ${err.message}`;
+        }
+      } else if (typeof err === 'string') {
+        errorMessageText = `Error: ${err}`;
       }
 
       const errorMessage: ChatMessage = {
