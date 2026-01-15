@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from .routes import query, health, chat
+from ..services.ingestion_service import IngestionService
 
 # Create FastAPI app instance
 app = FastAPI(
@@ -57,6 +58,15 @@ async def health_check():
     Health check endpoint
     """
     return {"status": "healthy", "message": "API is running and accessible"}
+
+@app.post("/api/ingest")
+async def trigger_ingestion():
+    """
+    Endpoint to trigger document ingestion
+    """
+    ingestion_service = IngestionService()
+    result = ingestion_service.ingest_documents()
+    return result
 
 # Add a fallback route for debugging that matches the API paths without the prefix
 # This can help if there are proxy configuration issues

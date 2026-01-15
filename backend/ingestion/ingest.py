@@ -100,78 +100,106 @@ logger.info(f"Reading documents from: {docs_path}")
 total_files_processed = 0
 total_chunks_processed = 0
 
-logger.info(f"Starting to walk through directory: {docs_path}")
-for root, dirs, files in os.walk(docs_path):
-    logger.info(f"Processing directory: {root}, found {len(files)} files: {files}")
-    for file in files:
-        if file.endswith(".md"):
-            file_path = os.path.join(root, file)
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    md_text = f.read()
+logger.info("Starting ingestion...")
+logger.info(f"Looking for documents in: {docs_path}")
 
-                # Convert MD to plain text
-                text = markdown.markdown(md_text)
+# Check if the directory exists and list files
+if os.path.exists(docs_path):
+    all_files = []
+    for root, dirs, files in os.walk(docs_path):
+        for file in files:
+            if file.endswith(".md"):
+                all_files.append(os.path.join(root, file))
 
-                # Extract metadata from file path
-                relative_path = os.path.relpath(file_path, docs_path)
-                directory = os.path.dirname(relative_path) or "root"
+    logger.info(f"Found {len(all_files)} markdown files")
 
-                # Split text
-                chunks = text_splitter.split_text(text)
+    for file_path in all_files:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                md_text = f.read()
 
-                for i, chunk in enumerate(chunks):
-                    # Generate embedding
-                    if cohere_client:
-                        try:
-                            embed_response = cohere_client.embed(
-                                texts=[chunk],
-                                model='embed-english-v3.0',
-                                input_type='search_document'  # Changed from 'search_query' to 'search_document' for documents
-                            )
-                            embedding = embed_response.embeddings[0]
-                        except Exception as e:
-                            logger.error(f"Error generating embedding for chunk {i} of {file_path}: {e}")
-                            continue
-                    else:
-                        # Use mock embedding when no API key
-                        import numpy as np
-                        # Create a simple embedding based on the text content (for consistent testing)
-                        embedding = [hash(chunk + str(i)) % 1000 / 1000.0 for i in range(1024)]
+            # Convert MD to plain text
+            text = markdown.markdown(md_text)
 
-                    # Payload for metadata
-                    payload = {
-                        "text": chunk,
-                        "file_path": relative_path,  # Store relative path
-                        "directory": directory,
-                        "source": "docusaurus_docs",
-                        "section": file,  # or parse heading
-                        "title": os.path.splitext(file)[0],  # filename without extension
-                        "full_path": file_path
-                    }
+            # Extract metadata from file path
+            relative_path = os.path.relpath(file_path, docs_path)
+            directory = os.path.dirname(relative_path) or "root"
 
-                    # Upsert to Qdrant (only if client is available)
-                    if qdrant_client:
-                        import uuid
-                        # Generate a UUID for the point ID to satisfy Qdrant requirements
-                        point_id = str(uuid.uuid4())
-                        point = PointStruct(id=point_id, vector=embedding, payload=payload)
-                        try:
-                            qdrant_client.upsert(collection_name=qdrant_collection, points=[point])
-                            total_chunks_processed += 1
-                        except Exception as e:
-                            logger.error(f"Error upserting chunk {i} of {file_path} to Qdrant: {e}")
-                            continue
-                    else:
-                        # Log that we would have upserted if credentials were available
-                        logger.info(f"Would have upserted chunk {i} of {file_path} to Qdrant (credentials not provided)")
-                        total_chunks_processed += 1  # Still count as processed for demo purposes
+            # Split text
+            chunks = text_splitter.split_text(text)
+            logger.info(f"File {os.path.basename(file_path)} split into {len(chunks)} chunks")
 
-                total_files_processed += 1
-                logger.info(f"Processed {file} with {len(chunks)} chunks")
+            for i, chunk in enumerate(chunks):
+                # Generate embedding
+                if cohere_client:
+                    try:
+                        embed_response = cohere_client.embed(
+                            texts=[chunk],
+                            model='embed-english-v3.0',
+                            input_type='search_document'  # Changed from 'search_query' to 'search_document' for documents
+                        )
+                        embedding = embed_response.embeddings[0]
+                    except Exception as e:
+                        logger.error(f"Error generating embedding for chunk {i} of {file_path}: {e}")
+                        continue
+                else:
+                    # Use mock embedding when no API key
+                    import numpy as np
+                    # Create a simple embedding based on the text content (for consistent testing)
+                    embedding = [hash(chunk + str(i)) % 1000 / 1000.0 for i in range(1024)]
 
-            except Exception as e:
-                logger.error(f"Error processing file {file_path}: {e}")
-                continue
+                # Payload for metadata
+                payload = {
+                    "text": chunk,
+                    "file_path": relative_path,  # Store relative path
+                    "directory": directory,
+                    "source": "docusaurus_docs",
+                    "section": os.path.basename(file_path),  # or parse heading
+                    "title": os.path.splitext(os.path.basename(file_path))[0],  # filename without extension
+                    "full_path": file_path
+                }
+
+                # Upsert to Qdrant (only if client is available)
+                if qdrant_client:
+                    import uuid
+                    # Generate a UUID for the point ID to satisfy Qdrant requirements
+                    point_id = str(uuid.uuid4())
+                    point = PointStruct(id=point_id, vector=embedding, payload=payload)
+                    try:
+                        qdrant_client.upsert(collection_name=qdrant_collection, points=[point])
+                        total_chunks_processed += 1
+                    except Exception as e:
+                        logger.error(f"Error upserting chunk {i} of {file_path} to Qdrant: {e}")
+                        continue
+                else:
+                    # Log that we would have upserted if credentials were available
+                    logger.info(f"Would have upserted chunk {i} of {file_path} to Qdrant (credentials not provided)")
+                    total_chunks_processed += 1  # Still count as processed for demo purposes
+
+            total_files_processed += 1
+            logger.info(f"Processed {os.path.basename(file_path)} with {len(chunks)} chunks")
+
+        except Exception as e:
+            logger.error(f"Error processing file {file_path}: {e}")
+            continue
+else:
+    logger.error(f"Documents directory does not exist: {docs_path}")
+    logger.info("Checking for alternative document locations...")
+    # Look for other possible document locations
+    possible_paths = [
+        os.path.join(project_root, "docs"),
+        os.path.join(project_root, "content"),
+        os.path.join(project_root, "textbook"),
+        os.path.join(grandparent_dir, "docusaurus", "docs"),
+        os.path.join(grandparent_dir, "docs")
+    ]
+
+    for path in possible_paths:
+        if os.path.exists(path):
+            logger.info(f"Found documents at: {path}")
+            docs_path = path
+            break
+    else:
+        logger.error("No documents directory found!")
 
 logger.info(f"Ingestion complete! Processed {total_files_processed} files and {total_chunks_processed} chunks.")
