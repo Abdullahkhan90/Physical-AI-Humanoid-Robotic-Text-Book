@@ -11,18 +11,17 @@ class QdrantService:
     def __init__(self):
         self.collection_name = "textbook"  # Updated to match user's requirement
 
-        # Initialize client with cloud credentials - using the original working credentials
-        self.client = QdrantClient(
-            url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
-            api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
-            timeout=120,  # Increased timeout as requested
-            verify=False,  # Keep SSL verification disabled
-            check_compatibility=False  # Added to address the compatibility warning
-        )
-
-        # Test connection and log appropriate messages
         try:
-            # Attempt to connect and get collections to verify connection
+            # Initialize client with cloud credentials - using the original working credentials
+            self.client = QdrantClient(
+                url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
+                api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
+                timeout=120,  # Increased timeout as requested
+                verify=False,  # Keep SSL verification disabled
+                check_compatibility=False  # Added to address the compatibility warning
+            )
+
+            # Test connection and log appropriate messages
             collections = self.client.get_collections()
             print("Connected successfully to Qdrant Cloud!")
             logging.info("Connected successfully to Qdrant Cloud!")
@@ -32,8 +31,10 @@ class QdrantService:
             logging.error(error_msg)
             if "404" in str(e) or "not found" in str(e).lower():
                 logging.error("Error: Invalid API key or URL - please verify your Qdrant Cloud credentials")
+            # Set client to None if connection fails
+            self.client = None
 
-        print("Connected to Qdrant Cloud")
+        self._init_collection()
 
     def _init_collection(self):
         """Initialize the collection if it doesn't exist"""

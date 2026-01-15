@@ -27,13 +27,26 @@ else:
 qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io"
 qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA"
 
-qdrant_client = QdrantClient(
-    url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
-    timeout=120,  # Increased timeout as requested
-    verify=False,  # Keep SSL verification disabled
-    check_compatibility=False  # Added to address the compatibility warning
-)
+try:
+    qdrant_client = QdrantClient(
+        url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
+        api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
+        timeout=120,  # Increased timeout as requested
+        verify=False,  # Keep SSL verification disabled
+        check_compatibility=False  # Added to address the compatibility warning
+    )
+
+    # Test connection
+    collections = qdrant_client.get_collections()
+    logger.info("Connected successfully to Qdrant Cloud for ingestion!")
+    print("Connected successfully to Qdrant Cloud for ingestion!")
+except Exception as e:
+    error_msg = f"Failed to connect to Qdrant Cloud for ingestion: {str(e)}"
+    logger.error(error_msg)
+    print(error_msg)
+    if "404" in str(e) or "not found" in str(e).lower():
+        logger.error("Error: Invalid API key or URL for ingestion - please verify your Qdrant Cloud credentials")
+    qdrant_client = None
 
 # Create collection if not exists (only if we have valid Qdrant credentials)
 if qdrant_client:
