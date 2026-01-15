@@ -33,7 +33,8 @@ try:
         api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
         timeout=120,  # Increased timeout as requested
         verify=False,  # Keep SSL verification disabled
-        check_compatibility=False  # Added to address the compatibility warning
+        grpc_keepalive_time_MS=400000,  # Additional parameter that might help with connection stability
+        **{'check_compatibility': False}  # Ensure check_compatibility is passed correctly
     )
 
     # Test connection
