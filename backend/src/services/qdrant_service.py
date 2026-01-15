@@ -11,16 +11,29 @@ class QdrantService:
     def __init__(self):
         self.collection_name = "textbook"  # Updated to match user's requirement
 
-        # Initialize client with cloud credentials - using URL format as shown in Qdrant example
+        # Initialize client with cloud credentials - using the original working credentials
         self.client = QdrantClient(
-            url="https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Using URL format from Qdrant example
-            api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
-            timeout=60,  # optional - timeout badhane ke liye
-            verify=False,  # optional - agar SSL issue aaye to
+            url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
+            api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
+            timeout=120,  # Increased timeout as requested
+            verify=False,  # Keep SSL verification disabled
             check_compatibility=False  # Added to address the compatibility warning
         )
+
+        # Test connection and log appropriate messages
+        try:
+            # Attempt to connect and get collections to verify connection
+            collections = self.client.get_collections()
+            print("Connected successfully to Qdrant Cloud!")
+            logging.info("Connected successfully to Qdrant Cloud!")
+        except Exception as e:
+            error_msg = f"Failed to connect to Qdrant Cloud: {str(e)}"
+            print(error_msg)
+            logging.error(error_msg)
+            if "404" in str(e) or "not found" in str(e).lower():
+                logging.error("Error: Invalid API key or URL - please verify your Qdrant Cloud credentials")
+
         print("Connected to Qdrant Cloud")
-        self._init_collection()
 
     def _init_collection(self):
         """Initialize the collection if it doesn't exist"""

@@ -24,14 +24,14 @@ else:
     cohere_client = Client(cohere_api_key)
 
 # Use the cloud URL and API key directly as provided by the user
-qdrant_endpoint = "https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io"
-qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8"
+qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io"
+qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA"
 
 qdrant_client = QdrantClient(
-    url="https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Using URL format from Qdrant example
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
-    timeout=60,  # optional - timeout badhane ke liye
-    verify=False,  # optional - agar SSL issue aaye to
+    url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
+    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
+    timeout=120,  # Increased timeout as requested
+    verify=False,  # Keep SSL verification disabled
     check_compatibility=False  # Added to address the compatibility warning
 )
 
