@@ -14,22 +14,20 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 cohere_api_key = os.getenv('COHERE_API_KEY')
-qdrant_endpoint = os.getenv('QDRANT_ENDPOINT')
-qdrant_api_key = os.getenv('QDRANT_API_KEY')
 qdrant_collection = "textbook_collection"
 
-# Only validate and initialize clients if API keys are provided
+# Initialize clients with cloud credentials
 if not cohere_api_key or "your_" in cohere_api_key:
     logger.warning("COHERE_API_KEY not set or is a placeholder. Using mock responses for testing.")
     cohere_client = None
 else:
     cohere_client = Client(cohere_api_key)
 
-if not qdrant_endpoint or not qdrant_api_key or "your_" in qdrant_endpoint or "your_" in qdrant_api_key:
-    logger.warning("QDRANT credentials not set or are placeholders. Using mock for testing.")
-    qdrant_client = None
-else:
-    qdrant_client = QdrantClient(url=qdrant_endpoint, api_key=qdrant_api_key)
+# Use the cloud URL and API key directly as provided by the user
+qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333"
+qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA"
+
+qdrant_client = QdrantClient(url=qdrant_endpoint, api_key=qdrant_api_key)
 
 # Create collection if not exists (only if we have valid Qdrant credentials)
 if qdrant_client:
@@ -37,13 +35,25 @@ if qdrant_client:
         # Try to get the collection to see if it exists
         qdrant_client.get_collection(qdrant_collection)
         logger.info(f"Collection {qdrant_collection} already exists")
-    except:
+    except Exception as e:
         # If getting the collection fails, it doesn't exist, so create it
-        qdrant_client.create_collection(
-            collection_name=qdrant_collection,
-            vectors_config=VectorParams(size=1024, distance=Distance.COSINE)  # Cohere embed dimension
-        )
-        logger.info(f"Created new collection: {qdrant_collection}")
+        logger.info(f"Collection {qdrant_collection} does not exist, creating it...")
+        try:
+            qdrant_client.create_collection(
+                collection_name=qdrant_collection,
+                vectors_config=VectorParams(size=1024, distance=Distance.COSINE)  # Cohere embed dimension
+            )
+            logger.info(f"Created new collection: {qdrant_collection}")
+        except Exception as create_error:
+            logger.error(f"Error creating Qdrant collection: {create_error}")
+            # If collection creation fails, try to continue anyway in case it was a race condition
+            # or the collection was created between the check and creation attempt
+            try:
+                qdrant_client.get_collection(qdrant_collection)
+                logger.info(f"Verified that collection {qdrant_collection} exists")
+            except Exception as verify_error:
+                logger.error(f"Could not verify collection existence after attempted creation: {verify_error}")
+                raise
 else:
     logger.info("Skipping collection creation - Qdrant client not initialized")
 

@@ -9,21 +9,19 @@ load_dotenv()
 
 class QdrantService:
     def __init__(self):
-        self.qdrant_endpoint = os.getenv("QDRANT_ENDPOINT")
-        self.qdrant_api_key = os.getenv("QDRANT_API_KEY")
+        # Use the cloud URL and API key directly as provided by the user
+        self.qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333"
+        self.qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA"
         self.collection_name = "textbook_collection"  # Updated to match user's requirement
 
-        # Only initialize client and collection if we have valid credentials
-        if self.qdrant_endpoint and self.qdrant_api_key and "your_" not in self.qdrant_endpoint and "your_" not in self.qdrant_api_key:
-            self.client = QdrantClient(
-                url=self.qdrant_endpoint,
-                api_key=self.qdrant_api_key,
-                prefer_grpc=False  # Using HTTP for better compatibility
-            )
-            self._init_collection()
-        else:
-            self.client = None
-    
+        # Initialize client with cloud credentials
+        self.client = QdrantClient(
+            url=self.qdrant_endpoint,
+            api_key=self.qdrant_api_key,
+            prefer_grpc=False  # Using HTTP for better compatibility
+        )
+        self._init_collection()
+
     def _init_collection(self):
         """Initialize the collection if it doesn't exist"""
         if not self.client:
