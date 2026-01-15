@@ -1,86 +1,143 @@
-# Running the AI Native Textbook Project
+# Running Instructions for RAG Chatbot Project
 
-## Project Overview
-This is a Docusaurus-based project for an AI Native Textbook on Physical AI & Humanoid Robotics.
+This document provides the complete instructions to run the RAG chatbot project for the Physical AI & Humanoid Robotics textbook.
 
-## Project Structure
-- Root directory: Contains the main package.json
-- `/docusaurus` directory: Contains the actual Docusaurus website
+## Prerequisites
 
-## How to Run the Project
+1. Python 3.11+ installed
+2. Node.js and npm installed
+3. Your API keys for Cohere and Qdrant
 
-1. **Navigate to the docusaurus directory:**
+## Setup
+
+### 1. Backend Setup
+
+1. Navigate to the backend directory:
    ```bash
-   cd docusaurus
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\backend\backend
    ```
 
-2. **Install dependencies:**
+2. Activate the virtual environment (if using one):
+   ```bash
+   # If using the existing virtual environment:
+   .\.venv\Scripts\activate
+   ```
+
+3. Install required Python packages (if not already installed):
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up your environment variables:
+   - Copy `.env.example` to `.env`
+   - Add your actual API keys:
+     ```
+     COHERE_API_KEY=your_actual_cohere_api_key
+     QDRANT_ENDPOINT=your_actual_qdrant_endpoint
+     QDRANT_API_KEY=your_actual_qdrant_api_key
+     ```
+
+### 2. Frontend Setup
+
+1. Navigate to the docusaurus directory:
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\docusaurus
+   ```
+
+2. Install required packages:
    ```bash
    npm install
    ```
 
-3. **Start the development server:**
+## Running the Application
+
+### 1. Run Ingestion
+
+1. Make sure you're in the backend directory:
    ```bash
-   npm run start
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\backend\backend
    ```
 
-## Alternative Method
+2. Run the ingestion script:
+   ```bash
+   python -m ingestion.ingest
+   ```
 
-From the root directory, you can use the scripts defined in the root package.json:
-```bash
-npm install  # Install root dependencies
-npm run dev  # Start the docusaurus development server
-```
+   This will process all the markdown files in the docusaurus/docs directory and store them in the Qdrant vector database.
+
+### 2. Start Backend Server
+
+1. Make sure you're in the backend directory:
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\backend\backend
+   ```
+
+2. Start the backend server:
+   ```bash
+   uvicorn src.api.main:app --reload --port 8000
+   ```
+
+### 3. Start Docusaurus Frontend
+
+1. Navigate to the docusaurus directory:
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\docusaurus
+   ```
+
+2. Start the Docusaurus development server:
+   ```bash
+   npm start
+   ```
+
+## Complete Command Sequence
+
+Here are the commands to run the entire application in order:
+
+1. **Activate virtual environment (if needed)**:
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\backend\backend
+   .\.venv\Scripts\activate
+   ```
+
+2. **Run ingestion**:
+   ```bash
+   python -m ingestion.ingest
+   ```
+
+3. **Start backend server** (in a new terminal):
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\backend\backend
+   .\.venv\Scripts\activate
+   uvicorn src.api.main:app --reload --port 8000
+   ```
+
+4. **Start Docusaurus frontend** (in another new terminal):
+   ```bash
+   cd C:\Users\Lenovo\Desktop\Physical-AI-Humanoid-Robotic-Text-Book\docusaurus
+   npm start
+   ```
+
+## Features of the RAG Chatbot
+
+- **Floating Chatbot**: Located in the upper right corner of the screen
+- **Dark Theme Support**: Automatically adapts to the user's color preference
+- **Header**: "Physical AI Assistant" with appropriate subtext
+- **Initial Messages**: "Hello! I am your Physical AI assistant. Ask me anything about the course!" and "Sure! Ask me anything about the Physical AI course."
+- **Input Placeholder**: "Type a message..."
+- **Text Selection**: Users can select text in the textbook and ask questions about the selected text
+- **Citations**: Responses include citations to specific sections of the textbook
+- **CORS Support**: Properly configured for localhost:3000
+- **Error Handling**: Graceful error handling with user-friendly messages
 
 ## Troubleshooting
 
-If you encounter npm installation issues on Windows:
-
-1. **Clear npm cache:**
+1. **Ingestion fails with "No module named 'langchain.text_splitter'"**: Make sure you've installed langchain-text-splitters:
    ```bash
-   npm cache clean --force
+   pip install langchain-text-splitters
    ```
 
-2. **Delete node_modules and package-lock.json in the docusaurus directory:**
-   ```bash
-   rm -rf docusaurus/node_modules
-   rm docusaurus/package-lock.json
-   ```
+2. **Backend endpoints return errors**: Check that your .env file contains valid API keys
 
-3. **Try installing with legacy peer deps:**
-   ```bash
-   cd docusaurus
-   npm install --legacy-peer-deps
-   ```
+3. **Chatbot doesn't appear**: Make sure the Chatbot component is included in your Docusaurus layout
 
-4. **Or try installing with --force flag:**
-   ```bash
-   cd docusaurus
-   npm install --force
-   ```
-
-5. **If you get network errors (ECONNRESET):**
-   - Check your internet connection
-   - Try using a different network or VPN if behind a corporate firewall
-   - Configure npm proxy settings if needed:
-     ```bash
-     npm config set proxy http://your-proxy:port
-     npm config set https-proxy http://your-proxy:port
-     ```
-
-6. **If you get permission errors (EPERM):**
-   - Run the command prompt as Administrator
-   - Or try:
-     ```bash
-     npm install --no-audit --no-fund
-     ```
-
-## Expected Result
-
-Once successfully running, you should see the Docusaurus development server start and the site will be accessible at http://localhost:3000
-
-The site will contain modules covering:
-- Module 1: The Robotic Nervous System (ROS 2)
-- Module 2: The Digital Twin (Gazebo & Unity)
-- Module 3: The AI-Robot Brain (NVIDIA Isaac)
-- Module 4: Vision-Language-Action (VLA)
+4. **CORS errors**: Verify that the origins in src/api/main.py match your frontend URL

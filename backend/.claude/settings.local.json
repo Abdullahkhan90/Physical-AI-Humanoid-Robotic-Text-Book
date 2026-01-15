@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir docusaurus)",
+      "Bash(dir \"C:\\Users\\Lenovo\\Desktop\\Physical-AI-Humanoid-Robotic-Text-Book\\backend\\backend\"\")",
+      "Bash(python system_check.py)"
+    ]
+  }
+}
