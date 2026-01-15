@@ -47,17 +47,11 @@ const config = {
           showReadingTime: true,
           path: './blog',
           routeBasePath: '/blog',
-<<<<<<< HEAD
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
-=======
           editUrl: 'https://github.com/Abdullahkhan90/Physical-AI-Humanoid-Robotic-Text-Book/edit/main/',
           feedOptions: {
             type: 'all',
             copyright: `Copyright © ${new Date().getFullYear()} Physical AI Humanoid Robotic Text Book`,
           },
->>>>>>> 001-rag-chatbot-docusaurus
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
