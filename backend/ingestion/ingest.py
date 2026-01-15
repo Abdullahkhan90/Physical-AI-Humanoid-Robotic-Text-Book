@@ -28,9 +28,7 @@ qdrant_endpoint = "https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.g
 qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8"
 
 qdrant_client = QdrantClient(
-    host="a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io",  # Using host instead of URL
-    port=6333,  # Port for gRPC/HTTP
-    https=True,  # Enable HTTPS for cloud connection
+    url="https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Using URL format from Qdrant example
     api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
     timeout=60,  # optional - timeout badhane ke liye
     verify=False,  # optional - agar SSL issue aaye to
