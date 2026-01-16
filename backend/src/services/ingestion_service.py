@@ -88,7 +88,9 @@ class IngestionService:
         """
         Ingest documents from the specified path or default path
         """
-        logger.info("Starting ingestion...")
+        import datetime
+        start_time = datetime.datetime.now()
+        logger.info(f"Ingestion started at {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
 
         # Define possible document locations in order of priority
         possible_paths = []
@@ -109,12 +111,15 @@ class IngestionService:
                 project_root / "textbook",             # backend/textbook/
             ]
 
+        # Log all paths being searched
+        logger.info(f"Searching folders: {[str(p) for p in possible_paths]}")
+
         # Find the first path that exists
         docs_path = None
         for path in possible_paths:
             if path.exists():
                 docs_path = path
-                logger.info(f"Searching in folder: {path}")
+                logger.info(f"Found documents in: {path}")
                 break
 
         # If no path exists, try copying from docusaurus/docs at repo root to backend/data/
@@ -131,18 +136,24 @@ class IngestionService:
                 dest_path.mkdir(exist_ok=True)
 
                 # Copy all files from source to destination
+                copied_count = 0
                 for item in source_path.rglob("*"):
                     if item.is_file() and (item.suffix.lower() in ['.md', '.pdf', '.txt']):
                         dest_file = dest_path / item.relative_to(source_path)
                         dest_file.parent.mkdir(parents=True, exist_ok=True)
                         shutil.copy2(item, dest_file)
+                        copied_count += 1
+
+                logger.info(f"Copied {copied_count} files to {dest_path}")
 
                 if dest_path.exists():
                     docs_path = dest_path
-                    logger.info(f"Copied content to {dest_path}, now searching there")
+                    logger.info(f"Using copied content at {dest_path}")
+            else:
+                logger.error(f"Source path {source_path} does not exist")
 
         if docs_path is None:
-            logger.error("ERROR: No textbook documents found in any folder!")
+            logger.error("CRITICAL ERROR: No textbook files found in any folder!")
             return {
                 "status": "error",
                 "message": "No documents found in any of the expected locations",
@@ -154,13 +165,13 @@ class IngestionService:
         all_files = []
         for root, dirs, files in os.walk(docs_path):
             for file in files:
-                if file.lower().endswith(('.md', '.pdf')):
+                if file.lower().endswith(('.md', '.pdf', '.txt')):
                     all_files.append(os.path.join(root, file))
 
-        logger.info(f"Found {len(all_files)} files (.md/.pdf)")
+        logger.info(f"Found {len(all_files)} files in {docs_path}")
 
         if len(all_files) == 0:
-            logger.error("ERROR: No textbook documents found in any folder!")
+            logger.error("CRITICAL ERROR: No textbook files found in any folder!")
             return {
                 "status": "error",
                 "message": "No documents found in the specified location",
@@ -255,8 +266,10 @@ class IngestionService:
                 logger.error(f"Error processing file {file_path}: {e}")
                 continue
 
-        logger.info(f"Successfully stored {total_chunks_processed} vectors in Qdrant collection '{self.collection_name}'")
-        logger.info(f"Ingestion complete! Processed {total_files_processed} files and {total_chunks_processed} chunks.")
+        logger.info(f"Stored {total_chunks_processed} vectors in Qdrant collection 'textbook'")
+        end_time = datetime.datetime.now()
+        duration = end_time - start_time
+        logger.info(f"Ingestion completed successfully in {duration.total_seconds():.2f} seconds")
 
         return {
             "status": "completed",

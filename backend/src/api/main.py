@@ -55,12 +55,16 @@ app.include_router(health.router, prefix="/api", tags=["health"])
 async def startup_event():
     logger.info("Application starting up...")
     try:
+        logger.info("Initializing ingestion service...")
         ingestion_service = IngestionService()
 
         # Check if collection is empty
         if ingestion_service.qdrant_client:
             try:
+                logger.info(f"Checking collection '{ingestion_service.collection_name}' status...")
                 collection_info = ingestion_service.qdrant_client.get_collection(ingestion_service.collection_name)
+                logger.info(f"Collection has {collection_info.points_count} vectors")
+
                 if collection_info.points_count == 0:
                     logger.info("Qdrant collection is empty, running ingestion...")
                     result = ingestion_service.ingest_documents()
@@ -76,6 +80,8 @@ async def startup_event():
             logger.warning("Qdrant client not initialized, cannot check collection status")
     except Exception as e:
         logger.error(f"Error during startup ingestion: {e}")
+        import traceback
+        logger.error(f"Full traceback: {traceback.format_exc()}")
 
 @app.get("/")
 async def root():
