@@ -93,7 +93,7 @@ class IngestionService:
         """
         import datetime
         start_time = datetime.datetime.now()
-        logger.info("Starting full ingestion...")
+        logger.info("Ingestion forced trigger started")
 
         # First, ensure all content is copied from docusaurus/docs to backend/data/
         script_dir = Path(__file__).parent.parent.parent  # Go to backend/src/
@@ -103,7 +103,34 @@ class IngestionService:
         source_path = repo_root / "docusaurus" / "docs"
         dest_path = project_root / "data"  # backend/data/
 
-        if source_path.exists():
+        # Check if files exist in various locations
+        logger.info(f"Checking for files in docusaurus/docs/: {source_path.exists()}")
+        logger.info(f"Checking for files in backend/data/: {dest_path.exists()}")
+        logger.info(f"Checking for files in backend/docs/: {(project_root / 'docs').exists()}")
+        logger.info(f"Checking for files in backend/textbook/: {(project_root / 'textbook').exists()}")
+
+        # Count existing files in each location
+        def count_files_in_path(path):
+            if path.exists():
+                count = 0
+                for item in path.rglob("*"):
+                    if item.is_file() and item.suffix.lower() in ['.md', '.pdf', '.txt']:
+                        count += 1
+                return count
+            return 0
+
+        source_count = count_files_in_path(source_path)
+        dest_count = count_files_in_path(dest_path)
+        docs_count = count_files_in_path(project_root / "docs")
+        textbook_count = count_files_in_path(project_root / "textbook")
+
+        logger.info(f"Files found in docusaurus/docs/: {source_count}")
+        logger.info(f"Files found in backend/data/: {dest_count}")
+        logger.info(f"Files found in backend/docs/: {docs_count}")
+        logger.info(f"Files found in backend/textbook/: {textbook_count}")
+
+        # Copy files if needed
+        if source_path.exists() and source_count > 0:
             logger.info(f"Copying files from {source_path} to {dest_path}")
             import shutil
 
@@ -121,7 +148,7 @@ class IngestionService:
 
             logger.info(f"Copied {copied_count} files from docusaurus/docs to backend/data/")
         else:
-            logger.warning(f"Source path {source_path} does not exist")
+            logger.warning(f"Source path {source_path} does not exist or is empty")
 
         # Define possible document locations in order of priority
         possible_paths = []
@@ -252,7 +279,7 @@ class IngestionService:
         logger.info(f"Stored {total_chunks_processed} vectors in Qdrant collection 'textbook'")
         end_time = datetime.datetime.now()
         duration = end_time - start_time
-        logger.info(f"Ingestion completed – ready for all questions! Duration: {duration.total_seconds():.2f} seconds")
+        logger.info(f"Ingestion completed successfully – ready for all questions! Duration: {duration.total_seconds():.2f} seconds")
 
         return {
             "status": "completed",

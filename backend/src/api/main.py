@@ -69,6 +69,10 @@ async def startup_event():
                     logger.info("Qdrant collection is nearly empty, running full ingestion...")
                     result = ingestion_service.ingest_documents()
                     logger.info(f"Ingestion completed: {result}")
+
+                    # Double-check the collection after ingestion
+                    collection_info_after = ingestion_service.qdrant_client.get_collection(ingestion_service.collection_name)
+                    logger.info(f"Collection now has {collection_info_after.points_count} vectors after ingestion")
                 else:
                     logger.info(f"Qdrant collection already has {collection_info.points_count} vectors, skipping ingestion")
             except Exception as e:
@@ -76,6 +80,13 @@ async def startup_event():
                 logger.info("Running full ingestion...")
                 result = ingestion_service.ingest_documents()
                 logger.info(f"Ingestion completed: {result}")
+
+                # Double-check the collection after ingestion
+                try:
+                    collection_info_after = ingestion_service.qdrant_client.get_collection(ingestion_service.collection_name)
+                    logger.info(f"Collection now has {collection_info_after.points_count} vectors after ingestion")
+                except Exception as e2:
+                    logger.error(f"Error checking collection after ingestion: {e2}")
         else:
             logger.warning("Qdrant client not initialized, cannot check collection status")
     except Exception as e:
