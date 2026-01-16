@@ -93,7 +93,35 @@ class IngestionService:
         """
         import datetime
         start_time = datetime.datetime.now()
-        logger.info(f"Ingestion started at {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.info("Starting full ingestion...")
+
+        # First, ensure all content is copied from docusaurus/docs to backend/data/
+        script_dir = Path(__file__).parent.parent.parent  # Go to backend/src/
+        project_root = script_dir.parent  # Go to backend/
+        repo_root = project_root.parent  # Go to repository root
+
+        source_path = repo_root / "docusaurus" / "docs"
+        dest_path = project_root / "data"  # backend/data/
+
+        if source_path.exists():
+            logger.info(f"Copying files from {source_path} to {dest_path}")
+            import shutil
+
+            # Create destination directory if it doesn't exist
+            dest_path.mkdir(exist_ok=True)
+
+            # Copy all files from source to destination
+            copied_count = 0
+            for item in source_path.rglob("*"):
+                if item.is_file() and (item.suffix.lower() in ['.md', '.pdf', '.txt']):
+                    dest_file = dest_path / item.relative_to(source_path)
+                    dest_file.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(item, dest_file)
+                    copied_count += 1
+
+            logger.info(f"Copied {copied_count} files from docusaurus/docs to backend/data/")
+        else:
+            logger.warning(f"Source path {source_path} does not exist")
 
         # Define possible document locations in order of priority
         possible_paths = []
@@ -102,82 +130,34 @@ class IngestionService:
             possible_paths.append(Path(docs_path))
         else:
             # Define the priority order for document locations
-            script_dir = Path(__file__).parent.parent.parent  # Go to backend/src/
-            project_root = script_dir.parent  # Go to backend/
-            repo_root = project_root.parent  # Go to repository root
-
             possible_paths = [
                 repo_root / "docusaurus" / "docs",     # docusaurus/docs at repo root (highest priority)
+                dest_path,                             # backend/data/ (where we just copied files)
                 project_root / "docusaurus" / "docs",  # backend/docusaurus/docs/
                 project_root / "docs",                 # backend/docs/
-                project_root / "data",                 # backend/data/
                 project_root / "textbook",             # backend/textbook/
             ]
 
         # Log all paths being searched
         logger.info(f"Searching folders: {[str(p) for p in possible_paths]}")
 
-        # Find the first path that exists
-        docs_path = None
+        # Find all paths that exist and collect files from them
+        all_files = []
         for path in possible_paths:
             if path.exists():
-                docs_path = path
                 logger.info(f"Found documents in: {path}")
-                break
+                for root, dirs, files in os.walk(path):
+                    for file in files:
+                        if file.lower().endswith(('.md', '.pdf', '.txt')):
+                            all_files.append(os.path.join(root, file))
 
-        # If no path exists, try copying from docusaurus/docs at repo root to backend/data/
-        if docs_path is None:
-            repo_root = Path(__file__).parent.parent.parent.parent  # Go to repository root
-            source_path = repo_root / "docusaurus" / "docs"
-            dest_path = Path(__file__).parent.parent.parent / "data"  # backend/data/
-
-            if source_path.exists():
-                logger.info(f"Copying content from {source_path} to {dest_path}")
-                import shutil
-
-                # Create destination directory if it doesn't exist
-                dest_path.mkdir(exist_ok=True)
-
-                # Copy all files from source to destination
-                copied_count = 0
-                for item in source_path.rglob("*"):
-                    if item.is_file() and (item.suffix.lower() in ['.md', '.pdf', '.txt']):
-                        dest_file = dest_path / item.relative_to(source_path)
-                        dest_file.parent.mkdir(parents=True, exist_ok=True)
-                        shutil.copy2(item, dest_file)
-                        copied_count += 1
-
-                logger.info(f"Copied {copied_count} files to {dest_path}")
-
-                if dest_path.exists():
-                    docs_path = dest_path
-                    logger.info(f"Using copied content at {dest_path}")
-            else:
-                logger.error(f"Source path {source_path} does not exist")
-
-        if docs_path is None:
-            logger.error("CRITICAL ERROR: No textbook files found in any folder!")
-            return {
-                "status": "error",
-                "message": "No documents found in any of the expected locations",
-                "files_processed": 0,
-                "chunks_stored": 0
-            }
-
-        # Count total files to be processed
-        all_files = []
-        for root, dirs, files in os.walk(docs_path):
-            for file in files:
-                if file.lower().endswith(('.md', '.pdf', '.txt')):
-                    all_files.append(os.path.join(root, file))
-
-        logger.info(f"Found {len(all_files)} files in {docs_path}")
+        logger.info(f"Found {len(all_files)} files")
 
         if len(all_files) == 0:
             logger.error("CRITICAL ERROR: No textbook files found in any folder!")
             return {
                 "status": "error",
-                "message": "No documents found in the specified location",
+                "message": "No documents found in any of the expected locations",
                 "files_processed": 0,
                 "chunks_stored": 0
             }
@@ -207,7 +187,7 @@ class IngestionService:
                         text = f.read()
 
                 # Extract metadata from file path
-                relative_path = os.path.relpath(file_path, docs_path)
+                relative_path = os.path.relpath(file_path, source_path if source_path.exists() else dest_path)
                 directory = os.path.dirname(relative_path) or "root"
 
                 # Split text
@@ -272,7 +252,7 @@ class IngestionService:
         logger.info(f"Stored {total_chunks_processed} vectors in Qdrant collection 'textbook'")
         end_time = datetime.datetime.now()
         duration = end_time - start_time
-        logger.info(f"Ingestion completed successfully in {duration.total_seconds():.2f} seconds")
+        logger.info(f"Ingestion completed – ready for all questions! Duration: {duration.total_seconds():.2f} seconds")
 
         return {
             "status": "completed",
