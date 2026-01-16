@@ -102,11 +102,11 @@ class IngestionService:
             repo_root = project_root.parent  # Go to repository root
 
             possible_paths = [
+                repo_root / "docusaurus" / "docs",     # docusaurus/docs at repo root (highest priority)
                 project_root / "docusaurus" / "docs",  # backend/docusaurus/docs/
                 project_root / "docs",                 # backend/docs/
                 project_root / "data",                 # backend/data/
                 project_root / "textbook",             # backend/textbook/
-                repo_root / "docusaurus" / "docs",     # docusaurus/docs at repo root
             ]
 
         # Find the first path that exists
