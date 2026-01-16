@@ -26,7 +26,9 @@ class IngestionService:
 
         try:
             self.qdrant_client = QdrantClient(
-                url="https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io:6333",  # Original working URL
+                host="0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io",  # Host without protocol
+                port=6333,
+                https=True,  # Enable HTTPS for cloud connection
                 api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY2xpZW50In0.eyJyb2xlIjoiY2xpZW50In0.DkmqZ6SfFIR0G2D6G1n8A05sg1WnqLLaIGA",
                 timeout=120,  # Increased timeout as requested
                 verify=False,  # Keep SSL verification disabled
