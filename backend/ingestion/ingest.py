@@ -24,15 +24,15 @@ else:
     cohere_client = Client(cohere_api_key)
 
 # Use the NEW cloud URL and API key directly as provided by the user
-qdrant_endpoint = "https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io"
-qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8"
+qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io"
+qdrant_api_key = "e8f2d6cc-ca28-49f9-9829-44beee9d802b|QHMFxrU7uOWz0JHn2yXOygnk7iLBYLUp8Gzh8WHZc-oB5_qkV_teNw"
 
 try:
     qdrant_client = QdrantClient(
-        host="a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io",  # NEW Host without protocol
+        host="0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io",  # Original Host without protocol
         port=6333,
         https=True,  # Enable HTTPS for cloud connection
-        api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
+        api_key="e8f2d6cc-ca28-49f9-9829-44beee9d802b|QHMFxrU7uOWz0JHn2yXOygnk7iLBYLUp8Gzh8WHZc-oB5_qkV_teNw",
         timeout=120,  # Increased timeout as requested
         verify=False,  # Keep SSL verification disabled
         grpc_keepalive_time_MS=400000,  # Additional parameter that might help with connection stability
@@ -41,8 +41,8 @@ try:
 
     # Test connection
     collections = qdrant_client.get_collections()
-    logger.info("Connected successfully to Qdrant Cloud for ingestion!")
-    print("Connected successfully to Qdrant Cloud for ingestion!")
+    logger.info("Connected successfully to Qdrant Cloud for ingestion with NEW API key!")
+    print("Connected successfully to Qdrant Cloud for ingestion with NEW API key!")
 except Exception as e:
     error_msg = f"Failed to connect to Qdrant Cloud for ingestion: {str(e)}"
     logger.error(error_msg)

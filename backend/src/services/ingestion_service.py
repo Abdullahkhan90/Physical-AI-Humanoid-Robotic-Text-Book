@@ -21,20 +21,23 @@ class IngestionService:
             self.cohere_client = Client(self.cohere_api_key)
 
         # Use the NEW cloud URL and API key directly as provided by the user
-        qdrant_endpoint = "https://a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io"
-        qdrant_api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8"
+        qdrant_endpoint = "https://0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io"
+        qdrant_api_key = "e8f2d6cc-ca28-49f9-9829-44beee9d802b|QHMFxrU7uOWz0JHn2yXOygnk7iLBYLUp8Gzh8WHZc-oB5_qkV_teNw"
 
         try:
             self.qdrant_client = QdrantClient(
-                host="a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io",  # NEW Host without protocol
+                host="0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io",  # Original Host without protocol
                 port=6333,
                 https=True,  # Enable HTTPS for cloud connection
-                api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
+                api_key="e8f2d6cc-ca28-49f9-9829-44beee9d802b|QHMFxrU7uOWz0JHn2yXOygnk7iLBYLUp8Gzh8WHZc-oB5_qkV_teNw",
                 timeout=120,  # Increased timeout as requested
                 verify=False,  # Keep SSL verification disabled
                 grpc_keepalive_time_MS=400000,  # Additional parameter that might help with connection stability
                 **{'check_compatibility': False}  # Ensure check_compatibility is passed correctly
             )
+
+            print("Successfully connected to Qdrant Cloud with NEW API key in ingestion service")
+            logging.info("Successfully connected to Qdrant Cloud with NEW API key in ingestion service")
 
             # Test connection
             collections = self.qdrant_client.get_collections()
@@ -55,7 +58,7 @@ class IngestionService:
             try:
                 # Try to get the collection to see if it exists
                 self.qdrant_client.get_collection(self.collection_name)
-                logger.info(f"Collection {self.collection_name} already exists - skipping creation")
+                logger.info(f"Collection '{self.collection_name}' created or already exists")
             except Exception as e:
                 # If getting the collection fails, it doesn't exist, so create it
                 logger.info(f"Collection {self.collection_name} does not exist, creating it...")
@@ -64,17 +67,17 @@ class IngestionService:
                         collection_name=self.collection_name,
                         vectors_config={"size": 768, "distance": "Cosine"}  # Updated to match user's requirement
                     )
-                    logger.info(f"Created new collection: {self.collection_name}")
+                    logger.info(f"Collection '{self.collection_name}' created or already exists")
                 except Exception as create_error:
                     if "already exists" in str(create_error):
-                        logger.info(f"Collection {self.collection_name} already exists - skipping creation")
+                        logger.info(f"Collection '{self.collection_name}' created or already exists")
                     else:
                         logger.error(f"Collection error: {create_error}")
                         # If collection creation fails, try to continue anyway in case it was a race condition
                         # or the collection was created between the check and creation attempt
                         try:
                             self.qdrant_client.get_collection(self.collection_name)
-                            logger.info(f"Verified that collection {self.collection_name} exists")
+                            logger.info(f"Collection '{self.collection_name}' created or already exists")
                         except Exception as verify_error:
                             logger.error(f"Could not verify collection existence after attempted creation: {verify_error}")
                             raise

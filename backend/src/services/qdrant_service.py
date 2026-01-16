@@ -12,18 +12,21 @@ class QdrantService:
         self.collection_name = "textbook"  # Updated to match user's requirement
 
         try:
-            # Initialize client with cloud credentials - using the NEW working credentials
+            # Initialize client with cloud credentials - using the NEW API key with full permissions
             # Use the host/port format instead of URL for better Qdrant Cloud compatibility
             self.client = QdrantClient(
-                host="a04cc351-47bd-4c14-9a8f-e0b43f1de657.europe-west3-0.gcp.cloud.qdrant.io",  # NEW Host without protocol
+                host="0d44ad0f-4e35-4f58-a5fd-34bf9beefde2.europe-west3-0.gcp.cloud.qdrant.io",  # Original Host without protocol
                 port=6333,
                 https=True,  # Enable HTTPS for cloud connection
-                api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.jHHZvJvY-BdFJrvRFx-ipf1bal1_6sNdBxLo17HZ-G8",
+                api_key="e8f2d6cc-ca28-49f9-9829-44beee9d802b|QHMFxrU7uOWz0JHn2yXOygnk7iLBYLUp8Gzh8WHZc-oB5_qkV_teNw",
                 timeout=120,  # Increased timeout as requested
                 verify=False,  # Keep SSL verification disabled
                 grpc_keepalive_time_MS=400000,  # Additional parameter that might help with connection stability
                 **{'check_compatibility': False}  # Ensure check_compatibility is passed correctly
             )
+
+            print("Successfully connected to Qdrant Cloud with NEW API key")
+            logging.info("Successfully connected to Qdrant Cloud with NEW API key")
 
             # Test connection and log appropriate messages
             collections = self.client.get_collections()
