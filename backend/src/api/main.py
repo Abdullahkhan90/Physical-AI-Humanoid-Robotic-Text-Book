@@ -94,6 +94,16 @@ async def startup_event():
         import traceback
         logger.error(f"Full traceback: {traceback.format_exc()}")
 
+# Manual endpoint to trigger ingestion
+@app.post("/api/ingest")
+async def trigger_ingestion():
+    """
+    Endpoint to trigger document ingestion
+    """
+    ingestion_service = IngestionService()
+    result = ingestion_service.ingest_documents()
+    return result
+
 @app.get("/")
 async def root():
     """

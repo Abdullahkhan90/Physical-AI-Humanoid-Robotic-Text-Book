@@ -93,7 +93,7 @@ class IngestionService:
         """
         import datetime
         start_time = datetime.datetime.now()
-        logger.info("Ingestion forced trigger started")
+        logger.info("Force ingestion started")
 
         # First, ensure all content is copied from docusaurus/docs to backend/data/
         script_dir = Path(__file__).parent.parent.parent  # Go to backend/src/
@@ -276,10 +276,10 @@ class IngestionService:
                 logger.error(f"Error processing file {file_path}: {e}")
                 continue
 
-        logger.info(f"Stored {total_chunks_processed} vectors in Qdrant collection 'textbook'")
+        logger.info(f"Stored {total_chunks_processed} vectors in Qdrant 'textbook'")
         end_time = datetime.datetime.now()
         duration = end_time - start_time
-        logger.info(f"Ingestion completed successfully – ready for all questions! Duration: {duration.total_seconds():.2f} seconds")
+        logger.info(f"Ingestion completed – now ready for ALL textbook questions! Duration: {duration.total_seconds():.2f} seconds")
 
         return {
             "status": "completed",
