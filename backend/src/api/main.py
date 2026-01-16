@@ -2,11 +2,16 @@
 """
 Main FastAPI application for the RAG Chatbot API
 """
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from .routes import query, health, chat
 from ..services.ingestion_service import IngestionService
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Create FastAPI app instance
 app = FastAPI(
@@ -44,6 +49,33 @@ app.add_middleware(
 app.include_router(query.router, prefix="/api", tags=["query"])
 app.include_router(chat.router, prefix="/api", tags=["chat"])
 app.include_router(health.router, prefix="/api", tags=["health"])
+
+# Auto-run ingestion on startup if collection is empty
+@app.on_event("startup")
+async def startup_event():
+    logger.info("Application starting up...")
+    try:
+        ingestion_service = IngestionService()
+
+        # Check if collection is empty
+        if ingestion_service.qdrant_client:
+            try:
+                collection_info = ingestion_service.qdrant_client.get_collection(ingestion_service.collection_name)
+                if collection_info.points_count == 0:
+                    logger.info("Qdrant collection is empty, running ingestion...")
+                    result = ingestion_service.ingest_documents()
+                    logger.info(f"Ingestion completed: {result}")
+                else:
+                    logger.info(f"Qdrant collection already has {collection_info.points_count} vectors, skipping ingestion")
+            except Exception as e:
+                logger.error(f"Error checking collection: {e}")
+                logger.info("Running ingestion...")
+                result = ingestion_service.ingest_documents()
+                logger.info(f"Ingestion completed: {result}")
+        else:
+            logger.warning("Qdrant client not initialized, cannot check collection status")
+    except Exception as e:
+        logger.error(f"Error during startup ingestion: {e}")
 
 @app.get("/")
 async def root():
